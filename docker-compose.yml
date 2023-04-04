@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres-bank:
+    container_name: pgdb-bank
+    build: ./database
+    restart: always
+    ports:
+      - "7567:5432"
+    environment:
+      - POSTGRES_USER=bank
+      - POSTGRES_PASSWORD=bank
+      - PGDATA=/pgdata
+      - POSTGRES_DB=bank
+  migrator-bank:
+    container_name: migrator-bank
+    build: ./database/migrator
